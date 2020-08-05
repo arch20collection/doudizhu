@@ -17,7 +17,8 @@ public class Application {
         d.add(new Card(11, "J"));
 
         d.sortDeck();
-
+        d.printDeck();
+        d.shuffle();
         d.printDeck();
     }
 }
