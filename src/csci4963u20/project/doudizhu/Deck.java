@@ -1,6 +1,6 @@
 package csci4963u20.project.doudizhu;
-
 import java.util.*;
+
 public class Deck {
     private ArrayList<Card> cards;
     private int card_count;
@@ -48,6 +48,40 @@ public class Deck {
         Collections.sort(cards);
     }
 
+    public boolean isthreeone(){
+        if(cards.size()!=4) return false;
+        Set<Card> pool=new TreeSet<Card>();
+        for(int i=0;i<4;i++){
+            pool.add(cards.get(i));
+        }
+        if(pool.size()==2)return true;
+        return false;
+    }
+    public boolean isbomb(){
+        if(cards.size()!=4) return false;
+        Card one=cards.get(0);
+        Card two=cards.get(1);
+        Card three=cards.get(2);
+        Card four=cards.get(3);
+
+         return ( one.equals(two) && one.equals(three) &&one.equals(four) );
+    }
+    public boolean ispair(){
+        if(cards.size()!=2) return false;
+        Card one=cards.get(0);
+        Card two=cards.get(1);
+        return ( one.equals(two) && one.equals(two) );
+    }
+    public boolean issequence(){
+        for(int i=0;i<cards.size();i++){
+            Card temp=cards.get(i);
+            if(i!=0){
+                Card previous=cards.get(i-1);
+                if(previous.getValue()!=temp.getValue()-1) return false;
+            }
+        }
+        return true;
+    }
     /**
      * Print the deck.
      */
@@ -56,4 +90,5 @@ public class Deck {
             System.out.println(c.getName());
         }
     }
+
 }
