@@ -10,7 +10,7 @@ public class Card implements Comparable<Card>{
     }
 
     public int getValue(){
-        return value + 0;
+        return value;
     }
 
     public String getName(){
