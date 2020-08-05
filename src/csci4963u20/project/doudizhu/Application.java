@@ -3,6 +3,7 @@ package csci4963u20.project.doudizhu;
 public class Application {
 
     public static void main(String[] args){
+
         System.out.println("Welcome to Doudizhu!");
         Deck d = new Deck(10);
         d.add(new Card(14, "A"));
@@ -20,5 +21,17 @@ public class Application {
         d.printDeck();
         d.shuffle();
         d.printDeck();
+
+        Deck pair = new Deck(2);
+        pair.add(new Card(13, "K"));
+        pair.add(new Card(13, "K"));
+        System.out.println(pair.isPair());
+
+        Deck trio_single = new Deck(4);
+        trio_single.add(new Card(13, "K"));
+        trio_single.add(new Card(13, "K"));
+        trio_single.add(new Card(13, "K"));
+        trio_single.add(new Card(11, "J"));
+        System.out.println(trio_single.isTrioSingle());
     }
 }

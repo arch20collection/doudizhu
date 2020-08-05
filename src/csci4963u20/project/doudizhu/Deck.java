@@ -48,16 +48,20 @@ public class Deck {
         Collections.sort(cards);
     }
 
-    public boolean isthreeone(){
-        if(cards.size()!=4) return false;
+    public boolean isTrioSingle(){
+        if(cards.size()!=4){
+            return false;
+        }
         Set<Card> pool=new TreeSet<Card>();
-        for(int i=0;i<4;i++){
+        for(int i = 0; i < 4; i++){
             pool.add(cards.get(i));
         }
-        if(pool.size()==2)return true;
+        if(pool.size() == 2){
+            return true;
+        }
         return false;
     }
-    public boolean isbomb(){
+    public boolean isBomb(){
         if(cards.size()!=4) return false;
         Card one=cards.get(0);
         Card two=cards.get(1);
@@ -66,13 +70,13 @@ public class Deck {
 
          return ( one.equals(two) && one.equals(three) &&one.equals(four) );
     }
-    public boolean ispair(){
+    public boolean isPair(){
         if(cards.size()!=2) return false;
         Card one=cards.get(0);
         Card two=cards.get(1);
         return ( one.equals(two) && one.equals(two) );
     }
-    public boolean issequence(){
+    public boolean isSequence(){
         for(int i=0;i<cards.size();i++){
             Card temp=cards.get(i);
             if(i!=0){
