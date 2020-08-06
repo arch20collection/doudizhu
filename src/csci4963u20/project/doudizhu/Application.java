@@ -1,7 +1,8 @@
 package csci4963u20.project.doudizhu;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class Application {
-
     public static void main(String[] args){
 
         System.out.println("Welcome to Doudizhu!");
@@ -33,5 +34,13 @@ public class Application {
         trio_single.add(new Card(13, "K"));
         trio_single.add(new Card(11, "J"));
         System.out.println(trio_single.isTrioSingle());
+        
+        ArrayList<String> boxes = new ArrayList<>();
+        ArrayList<String> numbers = new ArrayList<>();
+        ArrayList<String> names = new ArrayList<>();
+        for(int i = 1; i <= 16; i++)
+        {
+            numbers.add(i+"");
+        }
     }
 }
