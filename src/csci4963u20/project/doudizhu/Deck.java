@@ -48,6 +48,10 @@ public class Deck {
         Collections.sort(cards);
     }
 
+    /**
+     * Check if deck is trio and single (sandaiyi).
+     * @return boolean if deck is trio and single
+     */
     public boolean isTrioSingle(){
         if(cards.size()!=4){
             return false;
@@ -61,6 +65,30 @@ public class Deck {
         }
         return false;
     }
+
+    /**
+     * Check if deck is trio and pair (sandaier).
+     * @return boolean if deck is trio and pair
+     */
+    public boolean isTrioPair(){
+        if(cards.size() != 5){
+            return false;
+        }
+        Set<Card> pool=new TreeSet<Card>();
+        for(int i = 0; i < 5; i++){
+            pool.add(cards.get(i));
+        }
+        if(pool.size() == 2){
+            return true;
+        }
+        return false;
+    }
+
+
+    /**
+     * Check if deck is bomb (zhadan).
+     * @return boolean if boolean is bomb
+     */
     public boolean isBomb(){
         if(cards.size()!=4) return false;
         Card one=cards.get(0);
@@ -70,12 +98,31 @@ public class Deck {
 
          return ( one.equals(two) && one.equals(three) &&one.equals(four) );
     }
+
+    /**
+     * Check if deck is pair (duizi).
+     * @return boolean if deck is pair
+     */
     public boolean isPair(){
         if(cards.size()!=2) return false;
         Card one=cards.get(0);
         Card two=cards.get(1);
         return ( one.equals(two) && one.equals(two) );
     }
+
+    /**
+     * Check if deck is joker bomb (wangzha).
+     * @return boolean if deck is joker bomb
+     */
+    public boolean isJokerBomb(){
+        boolean ret = isPair();
+        return ret && cards.get(0).getValue() == 16;
+    }
+
+    /**
+     * Check if deck is sequence (shunzi).
+     * @return boolean if deck is sequence
+     */
     public boolean isSequence(){
         for(int i=0;i<cards.size();i++){
             Card temp=cards.get(i);

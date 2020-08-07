@@ -35,11 +35,11 @@ public class Application {
         trio_single.add(new Card(11, "J"));
         System.out.println(trio_single.isTrioSingle());
         
-        // (发牌) deal card
+        // deal card
         ArrayList<String> boxes = new ArrayList<>();
         ArrayList<String> numbers = new ArrayList<>();
         ArrayList<String> names = new ArrayList<>();
-        for(int i = 3; i <= 16; i++)
+        for(int i = 3; i <= 16; i++) // 3, 4, ..., 10, J, Q, K, A, 2, Joker
         {
             numbers.add(i+"");
         }
@@ -55,6 +55,7 @@ public class Application {
         names.add("2");
         names.add("joker");
         names.add("joker");
+
         for(int i = 0; i < 4; i++)
         {
             for(int j = 0; j <= 12; j++)
