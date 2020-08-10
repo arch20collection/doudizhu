@@ -16,6 +16,11 @@ public class Card implements Comparable<Card>{
     public String getName(){
         return name;
     }
+    
+    public void printCard() 
+    {
+    	System.out.println("Card " + this.value + " " + this.name);
+    }
 
     @Override
     public int compareTo(Card c){
