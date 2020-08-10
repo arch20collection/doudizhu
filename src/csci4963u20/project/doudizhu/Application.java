@@ -36,35 +36,43 @@ public class Application {
         System.out.println(trio_single.isTrioSingle());
         
         // deal card
-        ArrayList<String> boxes = new ArrayList<>();
-        ArrayList<String> numbers = new ArrayList<>();
-        ArrayList<String> names = new ArrayList<>();
-        for(int i = 3; i <= 16; i++) // 3, 4, ..., 10, J, Q, K, A, 2, Joker
-        {
-            numbers.add(i+"");
-        }
-        numbers.add(16+"");
-        for(int i = 3; i <= 10; i++)
-        {
-            names.add(i+"");
-        }
-        names.add("J");
-        names.add("Q");
-        names.add("K");
-        names.add("A");
-        names.add("2");
-        names.add("joker");
-        names.add("joker");
+        ArrayList<Card> library = new ArrayList<>();
+        ArrayList<Card> boxes = new ArrayList<>();
+//         ArrayList<String> numbers = new ArrayList<>();
+//         ArrayList<String> names = new ArrayList<>();
+//         for(int i = 3; i <= 16; i++) // 3, 4, ..., 10, J, Q, K, A, 2, Joker
+//         {
+//             numbers.add(i+"");
+//         }
+//         numbers.add(16+"");
+//         for(int i = 3; i <= 10; i++)
+//         {
+//             names.add(i+"");
+//         }
+//         names.add("J");
+//         names.add("Q");
+//         names.add("K");
+//         names.add("A");
+//         names.add("2");
+//         names.add("joker");
+//         names.add("joker");
 
+//         for(int i = 0; i < 4; i++)
+//         {
+//             for(int j = 0; j <= 12; j++)
+//             {
+//                 boxes.add(names[i] + numbers[i]);
+//             }
+//         }
+//         boxes.add(names[13] + numbers[13]);
+//         boxes.add(names[14] + numbers[14]);
         for(int i = 0; i < 4; i++)
         {
-            for(int j = 0; j <= 12; j++)
+            for(int j = 3; j < 16; j++)
             {
-                boxes.add(names[i] + numbers[i]);
+                library.add(
             }
         }
-        boxes.add(names[13] + numbers[13]);
-        boxes.add(names[14] + numbers[14]);
         Collections.shuffle(boxes);
         ArrayList<String> player1 = new ArrayList<>();
         ArrayList<String> player2 = new ArrayList<>();
