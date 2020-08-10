@@ -36,8 +36,26 @@ public class Application {
         System.out.println(trio_single.isTrioSingle());
         
         // deal card
-        ArrayList<Card> library = new ArrayList<>();
+        Stack<Card> library = new Stack<>();
         ArrayList<Card> boxes = new ArrayList<>();
+        
+        public String numToString(int number)
+        {
+            switch(number){
+                case 11:
+                    return "J";
+                case 12:
+                    return "Q";
+                case 13:
+                    return "K";
+                case 14:
+                    return "A";
+                case 15:
+                    return "2";
+                case 16:
+                    return "Joker";
+            }
+        }
 //         ArrayList<String> numbers = new ArrayList<>();
 //         ArrayList<String> names = new ArrayList<>();
 //         for(int i = 3; i <= 16; i++) // 3, 4, ..., 10, J, Q, K, A, 2, Joker
@@ -70,36 +88,28 @@ public class Application {
         {
             for(int j = 3; j < 16; j++)
             {
-                library.add(
+                if(j <= 10)
+                    library.push(new Card(j, Integer.ToString(j)))
+                else
+                    library.push(new Card(j, numToString(j)));
             }
         }
-        Collections.shuffle(boxes);
-        ArrayList<String> player1 = new ArrayList<>();
-        ArrayList<String> player2 = new ArrayList<>();
-        ArrayList<String> player3 = new ArrayList<>();
-        ArrayList<String> dipai = new ArrayList<>();
+        Collections.shuffle(library);
         
-        for(int i = 0; i < boxes.size(); i++)
+        ArrayList<Card> player1 = new ArrayList<>();
+        ArrayList<Card> player2 = new ArrayList<>();
+        ArrayList<Card> player3 = new ArrayList<>();
+        ArrayList<Card> dipai = new ArrayList<>();
+        
+        while(library.size() > 3)
         {
-            if(i > 50)
-            {
-                dipai.add(boxes.get(i));
-            }
-            else
-            {
-                if (i % 3 == 0)
-                {
-                    player1.add(boxes.get(i));
-                }
-                else if(i % 3 == 1)
-                {
-                    player2.add(boxes.get(i));
-                }
-                else
-                {
-                    player3.add(boxes.get(i));
-                }
-            }
+            player1.add(library.pop());
+            player2.add(library.pop());
+            player3.add(library.pop());
+        }
+        for(int i = 0; i < 3; i++)
+        {
+            dipai.add(library.pop());
         }
     }
 }
