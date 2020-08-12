@@ -1,6 +1,7 @@
 package csci4963u20.project.doudizhu;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Stack;
 
 public class Application {
     public static void main(String[] args){
@@ -36,7 +37,7 @@ public class Application {
         System.out.println(trio_single.isTrioSingle());
         
          // deal card
-        Stack<Card> library = new Stack<>();        
+        Stack<Card> library = new Stack<>();
 
         for(int i = 0; i < 4; i++)
         {
