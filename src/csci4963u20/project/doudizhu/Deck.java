@@ -142,4 +142,15 @@ public class Deck {
         }
     }
 
+    /**
+     * Dispense cards
+     * @param pattern pattern of the current round (当前这一轮的牌型)
+     */
+    public Deck dispenseCards(String pattern){
+        Deck ret = new Deck();
+        // choose cards according to pattern
+        // return a deck
+        return ret;
+    }
+
 }

@@ -1,4 +1,5 @@
 package csci4963u20.project.doudizhu;
 
-public class Server {
+public class Server extends Thread{
+
 }
