@@ -21,6 +21,18 @@ public class Deck {
         card_count = size;
         cards = new ArrayList<>(card_count);
     }
+    
+    /**
+     * Constructor from deck size.
+     * @param size deck size
+     */
+    public Deck(List<Card> input_cards){
+        card_count = input_cards.size();
+        cards = new ArrayList<>(card_count);
+        for(Card c : input_cards) {
+        	cards.add(new Card(c.getValue(), c.getName()));
+        }
+    }
 
     /**
      * Add a Card to this Deck.
@@ -31,6 +43,14 @@ public class Deck {
         boolean ret = cards.add(c);
         if(ret){ card_count++; }
         return ret;
+    }
+    
+    /**
+     * Return the size of the deck
+     * @return the size of deck
+     */
+    public int size() {
+    	return cards.size();
     }
 
 
@@ -141,6 +161,14 @@ public class Deck {
             System.out.println(c.getName());
         }
     }
+    
+    /**
+     * Get an iterator of cards
+     * @return the iterator of cards
+     */
+    public Iterator<Card> getIterator() {
+    	return cards.iterator();
+    }
 
     /**
      * Dispense cards
@@ -151,6 +179,50 @@ public class Deck {
         // choose cards according to pattern
         // return a deck
         return ret;
+    }
+    
+    /**
+     * Split a full deck in to 3 deck, 1 has 20 cards, others each have 17 cards
+     * @return an array of Deck
+     */
+    public Deck[] deal() {
+    	Deck[] splitDeck = new Deck[3];
+    	splitDeck[0] = new Deck(this.cards.subList(0, 20));
+    	splitDeck[0].printDeck();
+    	System.out.println();
+    	splitDeck[1] = new Deck(this.cards.subList(20, 37));
+    	splitDeck[1].printDeck();
+    	System.out.println();
+    	splitDeck[2] = new Deck(this.cards.subList(37, 54));
+    	splitDeck[2].printDeck();
+    	System.out.println();
+    	return splitDeck;
+    }
+    
+    
+    
+    /**
+     * Get a full deck of card(54 cards)
+     * @return the full deck
+     */
+    public static Deck generateFullDeck() {
+    	String[] card_name = {"3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A", "2", "Joker"};
+    	Deck fullDeck = new Deck(54);
+    	for(int i = 0; i < 14; i++) {
+    		for(int j = 0; j < 4; j++) {
+    			fullDeck.add(new Card(i+3, card_name[i]));
+    			System.out.println("Card added " + (i+3) + card_name[i]);
+    			if(fullDeck.size() == 54) {
+    				break;
+    			}
+    		}
+    	}
+    	return fullDeck;
+    }
+    
+    public static void main(String[] arg) {
+    	Deck full = Deck.generateFullDeck();
+    	Deck[] split = full.deal();
     }
 
 }
