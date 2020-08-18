@@ -32,12 +32,12 @@ public class Server extends Thread{
      */
     public Server (int port) {
         this.port = port;
+        lord = 0;
         System.out.println("[Server] Starting...");
         fullDeck = Deck.generateFullDeck();
         fullDeck.shuffle();
-        splitDeck = fullDeck.dealFullDeck();
+        splitDeck = fullDeck.dealFullDeck(lord);
 //        fullDeck.printDeck();
-        lord = 0;
         currentPlayer = lord;
         cardRemain = new int[3];
         group = new Player[3];
@@ -57,7 +57,7 @@ public class Server extends Thread{
         readyPlayer = 0;
         currentPlayer = lord;
         fullDeck.shuffle();
-        splitDeck = fullDeck.dealFullDeck();
+        splitDeck = fullDeck.dealFullDeck(lord);
         fullDeck.printDeck();
         cardRemain = new int[3];
         broadcast("resetGame", null);
@@ -143,22 +143,15 @@ public class Server extends Thread{
     	
     	if(inputObj.msgType.equals("getDeck")) {
     		if(player == lord) {
-    			send(player, "deals", splitDeck[0]);
-    			group[player].deck = splitDeck[0];
+    			send(player, "deals", splitDeck[lord]);
+    			group[player].deck = splitDeck[lord];
     			cardRemain[player] = 20;
     			splitDeck[0] = null;
     		}
     		else {
-    			if(splitDeck[1] != null) {
-    				send(player, "deals", splitDeck[1]);
-    				group[player].deck = splitDeck[1];
-    				splitDeck[1] = null;
-    			}
-    			else {
-    				send(player, "deals", splitDeck[2]);
-    				group[player].deck = splitDeck[2];
-    				splitDeck[2] = null;
-    			}
+    			send(player, "deals", splitDeck[player]);
+    			group[player].deck = splitDeck[player];
+    			splitDeck[player] = null;
     			cardRemain[player] = 17;
     		}
     	}

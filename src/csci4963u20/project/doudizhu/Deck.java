@@ -1,7 +1,8 @@
 package csci4963u20.project.doudizhu;
+import java.io.*;
 import java.util.*;
 
-public class Deck {
+public class Deck implements Serializable{
     private ArrayList<Card> cards;
     private int card_count;
 
@@ -188,20 +189,33 @@ public class Deck {
      * Split a full deck in to 3 deck, 1 has 20 cards, others each have 17 cards
      * @return an array of Deck
      */
-    public Deck[] dealFullDeck() {
+    public Deck[] dealFullDeck(int lord) {
         shuffle();
     	Deck[] splitDeck = new Deck[3];
-    	splitDeck[0] = new Deck(this.cards.subList(0, 20));
-    	splitDeck[0].sortDeck();
-    	splitDeck[0].printDeck();
+    	splitDeck[lord] = new Deck(this.cards.subList(0, 20));
+    	splitDeck[lord].sortDeck();
+    	splitDeck[lord].printDeck();
     	System.out.println();
-    	splitDeck[1] = new Deck(this.cards.subList(20, 37));
-        splitDeck[1].sortDeck();
-    	splitDeck[1].printDeck();
+    	int p1, p2;
+    	if(lord == 0) {
+    		p1 = 1;
+    		p2 = 2;
+    	}
+    	else if(lord == 1) {
+    		p1 = 0;
+    		p2 = 2;
+    	}
+    	else {
+    		p1 = 0;
+    		p2 = 1;
+    	}
+    	splitDeck[p1] = new Deck(this.cards.subList(20, 37));
+        splitDeck[p1].sortDeck();
+    	splitDeck[p1].printDeck();
     	System.out.println();
-    	splitDeck[2] = new Deck(this.cards.subList(37, 54));
-        splitDeck[2].sortDeck();
-    	splitDeck[2].printDeck();
+    	splitDeck[p2] = new Deck(this.cards.subList(37, 54));
+        splitDeck[p2].sortDeck();
+    	splitDeck[p2].printDeck();
     	System.out.println();
     	return splitDeck;
     }
@@ -235,7 +249,7 @@ public class Deck {
     
     public static void main(String[] arg) {
     	Deck full = Deck.generateFullDeck();
-    	Deck[] split = full.dealFullDeck();
+    	Deck[] split = full.dealFullDeck(0);
     }
 
 }

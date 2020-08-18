@@ -1,6 +1,8 @@
 package csci4963u20.project.doudizhu;
 
-public class Card implements Comparable<Card>{
+import java.io.Serializable;
+
+public class Card implements Comparable<Card>, Serializable{
     private int value;
     private String name;
 

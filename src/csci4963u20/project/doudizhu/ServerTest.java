@@ -22,7 +22,7 @@ public class ServerTest {
     	p2.send("ready", null);
     	p3.send("ready", null);
     	try {
-            Thread.sleep(1000);
+            Thread.sleep(4000);
         } catch (Exception e) {
             e.printStackTrace();
         }
