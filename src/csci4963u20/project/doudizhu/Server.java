@@ -18,6 +18,7 @@ public class Server extends Thread{
     public int readyPlayer = 0;
     public int currentPlayer;
     public int port;
+    public int[] cardRemain;
     private Deck fullDeck;
     private Deck[] splitDeck;
     private int lord;
@@ -38,6 +39,7 @@ public class Server extends Thread{
         fullDeck.printDeck();
         lord = 0;
         currentPlayer = lord;
+        cardRemain = new int[3];
         group = new Player[3];
         player1 = new Player(0);
         player2 = new Player(1);
@@ -129,27 +131,37 @@ public class Server extends Thread{
     	if(inputObj.msgType.equals("getDeck")) {
     		if(player == lord) {
     			send(player, "deals", splitDeck[0]);
+    			group[player].deck = splitDeck[0];
+    			cardRemain[player] = 20;
     			splitDeck[0] = null;
     		}
     		else {
     			if(splitDeck[1] != null) {
     				send(player, "deals", splitDeck[1]);
+    				group[player].deck = splitDeck[1];
     				splitDeck[1] = null;
     			}
     			else {
     				send(player, "deals", splitDeck[2]);
+    				group[player].deck = splitDeck[2];
     				splitDeck[2] = null;
     			}
+    			cardRemain[player] = 17;
     		}
     	}
     	else if(inputObj.msgType.equals("playerName")) {
     		group[player].name = (String)inputObj.content;
     	}
     	else if(inputObj.msgType.equals("getPlayersName")){
-    		
+    		String[] names = new String[3];
+    		for(int i = 0; i < 3; i++) {
+    			names[i] = group[i].name;
+    		}
+    		send(player, "names", names);
     	}
     	else if (inputObj.msgType.equals("sendDeck")) {
     		sendOther(player, "receiveDeck", inputObj.content);
+    		cardRemain[player] -= ((Deck)inputObj.content).size();
     		if(currentPlayer == 2) {
     			currentPlayer = 0;
     		}
@@ -157,6 +169,10 @@ public class Server extends Thread{
     			currentPlayer++;
     		}
     		send(currentPlayer, "yourTerm", null);
+    	}
+    	else if (inputObj.msgType.equals("getCardsRemain")) {
+    		int[] data = cardRemain.clone();
+    		send(player, "cardsRemain", data);
     	}
     	else if (inputObj.msgType.equals("win")) {
     		

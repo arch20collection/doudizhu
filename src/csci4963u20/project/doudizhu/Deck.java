@@ -223,13 +223,15 @@ public class Deck {
     	return fullDeck;
     }
     
-    public static void main(String[] arg) {
-    	Deck full = Deck.generateFullDeck();
-    	Deck[] split = full.deal();
-    }
+    
 
     public Iterator<Card> cardIterator(){
         return cards.iterator();
+    }
+    
+    public static void main(String[] arg) {
+    	Deck full = Deck.generateFullDeck();
+    	Deck[] split = full.deal();
     }
 
 }

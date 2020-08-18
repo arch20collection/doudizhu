@@ -13,7 +13,10 @@ public class Client extends Thread{
     private ObjectOutputStream out = null;
     public Socket server;
     private Player player;
-    private Deck currentDeck;
+    public Deck currentDeck;
+    public Deck latestDeck;
+    public int[] cardsRemain;
+    private String[] playerNames;
     
     /**
      * Default constructor from player with name
@@ -66,10 +69,17 @@ public class Client extends Thread{
             	}
             	else if(m.msgType.equals("receiveDeck")) {
             		Deck received = (Deck)m.content;
+            		latestDeck = received;
             		Iterator<Card> itr = received.getIterator();
             		while(itr.hasNext()) {
             			currentDeck.add(itr.next());
             		}
+            	}
+            	else if(m.msgType.equals("names")) {
+            		playerNames = (String[]) m.content;
+            	}
+            	else if(m.msgType.equals("cardsRemain")) {
+            		cardsRemain = (int[])m.content;
             	}
             }
             
