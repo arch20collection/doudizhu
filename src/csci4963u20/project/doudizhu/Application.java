@@ -6,6 +6,8 @@ public class Application {
     public static Properties config;
     public static int mode = -1;
     public static String playerName;
+    public static String serverHost = "localhost";
+    public static int serverPort = 8424;
     /**
      * Convert number to corresponding card
      * @param number number of card to be converted
