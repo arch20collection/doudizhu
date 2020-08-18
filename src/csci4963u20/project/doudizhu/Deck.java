@@ -45,7 +45,7 @@ public class Deck {
      * Sort the deck.
      */
     public void sortDeck(){
-        Collections.sort(cards);
+        Collections.sort(cards, Collections.reverseOrder());
     }
 
     /**
