@@ -67,7 +67,7 @@ public class Deck {
     }
 
     /**
-     * Check if deck is trio and pair (sandaier).
+     * Check if deck is trio and pair (san'dai'er).
      * @return boolean if deck is trio and pair
      */
     public boolean isTrioPair(){
@@ -96,7 +96,7 @@ public class Deck {
         Card three=cards.get(2);
         Card four=cards.get(3);
 
-         return ( one.equals(two) && one.equals(three) &&one.equals(four) );
+        return ( one.equals(two) && one.equals(three) &&one.equals(four) );
     }
 
     /**
@@ -107,7 +107,7 @@ public class Deck {
         if(cards.size()!=2) return false;
         Card one=cards.get(0);
         Card two=cards.get(1);
-        return ( one.equals(two) && one.equals(two) );
+        return one.equals(two);
     }
 
     /**
@@ -146,11 +146,18 @@ public class Deck {
      * Dispense cards
      * @param pattern pattern of the current round (当前这一轮的牌型)
      */
-    public Deck dispenseCards(String pattern){
+    public Deck chooseCards(String pattern, ArrayList<Integer> chosen){
         Deck ret = new Deck();
-        // choose cards according to pattern
+        // choose cards according to pattern and chosen array
+        if(chosen.size() != 0){
+
+        }
         // return a deck
         return ret;
+    }
+
+    public Iterator<Card> cardIterator(){
+        return cards.iterator();
     }
 
 }
