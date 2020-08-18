@@ -50,6 +50,20 @@ public class Server extends Thread{
     }
     
     /**
+     * Reset the game
+     */
+    void reset() {
+        System.out.println("[Server] Reset the game.");
+        readyPlayer = 0;
+        currentPlayer = lord;
+        fullDeck.shuffle();
+        splitDeck = fullDeck.deal();
+        fullDeck.printDeck();
+        cardRemain = new int[3];
+        boardcast("resetGame", null);
+    }
+    
+    /**
      * Send message from server
      * @param client client to receive the message
      * @param type message type
@@ -154,7 +168,7 @@ public class Server extends Thread{
     	}
     	else if(inputObj.msgType.equals("getPlayersName")){
     		String[] names = new String[3];
-    		for(int i = 0; i < 3; i++) {
+    		for(int i = 0; i < group.length; i++) {
     			names[i] = group[i].name;
     		}
     		send(player, "names", names);
@@ -175,7 +189,8 @@ public class Server extends Thread{
     		send(player, "cardsRemain", data);
     	}
     	else if (inputObj.msgType.equals("win")) {
-    		
+//    		sendOther(player, "gameOver", )
+    		reset();
     	}
     	else if (inputObj.msgType.equals("ready")) {
     		readyPlayer++;
