@@ -12,7 +12,7 @@ public class Client extends Thread{
     // output stream
     private ObjectOutputStream out = null;
     public Socket server;
-    private Player player;
+    public Player player;
     public Deck currentDeck;
     public Deck latestDeck;
     public int[] cardsRemain;
@@ -55,6 +55,7 @@ public class Client extends Thread{
             while(true) {
             	Message m = ((Message)in.readObject());
             	if(m.msgType.equals("assignID")) {
+            		System.out.println("assigning Id");
             		this.player.id = ((int[]) m.content)[0];
             		send("playerName", this.player.name);
             	}

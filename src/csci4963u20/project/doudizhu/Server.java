@@ -36,7 +36,7 @@ public class Server extends Thread{
         fullDeck = Deck.generateFullDeck();
         fullDeck.shuffle();
         splitDeck = fullDeck.dealFullDeck();
-        fullDeck.printDeck();
+//        fullDeck.printDeck();
         lord = 0;
         currentPlayer = lord;
         cardRemain = new int[3];
@@ -205,8 +205,11 @@ public class Server extends Thread{
     		serverSocket = new ServerSocket(this.port);
     		
     		playerSock1 = serverSocket.accept();
+    		System.out.println("[Server] Client1 connected");
     		playerSock2 = serverSocket.accept();
+    		System.out.println("[Server] Client2 connected");
     		playerSock3 = serverSocket.accept();
+    		System.out.println("[Server] Client3 connected");
     		
     		out1 = new ObjectOutputStream(playerSock1.getOutputStream());
             in1 = new ObjectInputStream(playerSock1.getInputStream());

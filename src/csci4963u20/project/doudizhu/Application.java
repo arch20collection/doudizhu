@@ -7,7 +7,7 @@ public class Application {
     public static int mode = -1;
     public static String playerName;
     public static String serverHost = "localhost";
-    public static int serverPort = 8424;
+    public static int serverPort = 8848;
     /**
      * Convert number to corresponding card
      * @param number number of card to be converted

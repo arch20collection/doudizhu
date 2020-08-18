@@ -216,7 +216,7 @@ public class Deck {
     	for(int i = 0; i < 14; i++) {
     		for(int j = 0; j < 4; j++) {
     			fullDeck.add(new Card(i+3, card_name[i]));
-    			System.out.println("Card added " + (i+3) + card_name[i]);
+//    			System.out.println("Card added " + (i+3) + card_name[i]);
     			if(fullDeck.size() == 54) {
     				break;
     			}
