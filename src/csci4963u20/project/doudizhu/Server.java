@@ -35,7 +35,7 @@ public class Server extends Thread{
         System.out.println("[Server] Starting...");
         fullDeck = Deck.generateFullDeck();
         fullDeck.shuffle();
-        splitDeck = fullDeck.deal();
+        splitDeck = fullDeck.dealFullDeck();
         fullDeck.printDeck();
         lord = 0;
         currentPlayer = lord;
@@ -104,11 +104,10 @@ public class Server extends Thread{
     
     /**
      * Send message from server
-     * @param client client to receive the message
      * @param type message type
      * @param content message content
      */
-    void boardcast(String type, Object content) {
+    void broadcast(String type, Object content) {
 
         Message m = new Message(-1,-1,type,content);
 
@@ -180,7 +179,7 @@ public class Server extends Thread{
     	else if (inputObj.msgType.equals("ready")) {
     		readyPlayer++;
     		if(readyPlayer == 3) {
-    			boardcast("gameStart", null);
+    			broadcast("gameStart", null);
     		}
     	}
     }

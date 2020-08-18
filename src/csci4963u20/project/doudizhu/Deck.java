@@ -24,7 +24,7 @@ public class Deck {
     
     /**
      * Constructor from deck size.
-     * @param size deck size
+     * @param input_cards a list of cards
      */
     public Deck(List<Card> input_cards){
         card_count = input_cards.size();
@@ -171,15 +171,15 @@ public class Deck {
     }
 
     /**
-     * Dispense cards
-     * @param pattern pattern of the current round (当前这一轮的牌型)
+     * Choose cards to send
+     * @param pattern pattern of the current round
+     * @param chosen cards chosen by user
+     * @return Deck of cards chosen by user according to pattern
      */
-    public Deck chooseCards(String pattern, ArrayList<Integer> chosen){
+    public Deck chooseCards(String pattern, ArrayList<Card> chosen){
         Deck ret = new Deck();
         // choose cards according to pattern and chosen array
-        if(chosen.size() != 0){
 
-        }
         // return a deck
         return ret;
     }
@@ -188,21 +188,23 @@ public class Deck {
      * Split a full deck in to 3 deck, 1 has 20 cards, others each have 17 cards
      * @return an array of Deck
      */
-    public Deck[] deal() {
+    public Deck[] dealFullDeck() {
+        shuffle();
     	Deck[] splitDeck = new Deck[3];
     	splitDeck[0] = new Deck(this.cards.subList(0, 20));
+    	splitDeck[0].sortDeck();
     	splitDeck[0].printDeck();
     	System.out.println();
     	splitDeck[1] = new Deck(this.cards.subList(20, 37));
+        splitDeck[1].sortDeck();
     	splitDeck[1].printDeck();
     	System.out.println();
     	splitDeck[2] = new Deck(this.cards.subList(37, 54));
+        splitDeck[2].sortDeck();
     	splitDeck[2].printDeck();
     	System.out.println();
     	return splitDeck;
     }
-    
-    
     
     /**
      * Get a full deck of card(54 cards)
@@ -222,16 +224,18 @@ public class Deck {
     	}
     	return fullDeck;
     }
-    
-    
 
+    /**
+     * Get an iterator of the deck
+     * @return iterator of the deck
+     */
     public Iterator<Card> cardIterator(){
         return cards.iterator();
     }
     
     public static void main(String[] arg) {
     	Deck full = Deck.generateFullDeck();
-    	Deck[] split = full.deal();
+    	Deck[] split = full.dealFullDeck();
     }
 
 }
