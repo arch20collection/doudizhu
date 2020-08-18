@@ -8,12 +8,15 @@ public class MainBody extends JFrame {
     public CardPanel current_deck_panel;
     public CardPanel own_deck_panel;
     public ControlToolBar ctb;
+    public ControlMenuBar cmb;
     public MainBody(){
+        setTitle("Doudizhu");
         osb = new OpponentStatusBar();
         current_deck_panel = new CardPanel("Current deck", new Deck());
 
         own_deck_panel = new CardPanel("Own deck", new Deck());
         ctb = new ControlToolBar();
+        cmb = new ControlMenuBar();
 
         setLayout(new GridLayout(4, 1));
         setSize(800, 600);
@@ -21,6 +24,7 @@ public class MainBody extends JFrame {
         add(current_deck_panel);
         add(own_deck_panel);
         add(ctb);
+        setJMenuBar(cmb);
 
         Deck d = new Deck();
         d.add(new Card(13, "K"));
