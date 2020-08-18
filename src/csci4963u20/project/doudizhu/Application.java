@@ -1,54 +1,56 @@
 package csci4963u20.project.doudizhu;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Stack;
+import javax.swing.*;
+import java.util.Properties;
 
 public class Application {
+    public static Properties config;
+    public static int mode = -1;
+    public static String playerName;
+    /**
+     * Convert number to corresponding card
+     * @param number number of card to be converted
+     * @return String of the number's corresponding card
+     */
+    public static String numToString(int number) {
+        switch(number){
+            case 11:
+                return "J";
+            case 12:
+                return "Q";
+            case 13:
+                return "K";
+            case 14:
+                return "A";
+            case 15:
+                return "2";
+            case 16:
+                return "Joker";
+            default:
+                return "Error";
+        }
+    }
+
+    /**
+     * Main program
+     * @param args arguments
+     */
     public static void main(String[] args){
 
         System.out.println("Welcome to Doudizhu!");
-        Deck d = new Deck(10);
-        d.add(new Card(14, "A"));
-        d.add(new Card(15, "2"));
-        d.add(new Card(16, "Joker"));
-        d.add(new Card(4, "4"));
-        d.add(new Card(5, "5"));
-        d.add(new Card(11, "J"));
-        d.add(new Card(12, "Q"));
-        d.add(new Card(13, "K"));
-        d.add(new Card(13, "K"));
-        d.add(new Card(11, "J"));
-
-        d.sortDeck();
-        d.printDeck();
-        d.shuffle();
-        d.printDeck();
-
-        Deck pair = new Deck(2);
-        pair.add(new Card(13, "K"));
-        pair.add(new Card(13, "K"));
-        System.out.println(pair.isPair());
-
-        Deck trio_single = new Deck(4);
-        trio_single.add(new Card(13, "K"));
-        trio_single.add(new Card(13, "K"));
-        trio_single.add(new Card(13, "K"));
-        trio_single.add(new Card(11, "J"));
-        System.out.println(trio_single.isTrioSingle());
         
          // deal card
-        Stack<Card> library = new Stack<>();
+        /*Stack<Card> library = new Stack<>();
 
-        for(int i = 0; i < 4; i++)
-        {
-            for(int j = 3; j < 16; j++)
-            {
+        for(int i = 0; i < 4; i++) {
+            for(int j = 3; j < 16; j++) {
                 if(j <= 10)
                     library.push(new Card(j, Integer.toString(j)));
                 else
                     library.push(new Card(j, numToString(j)));
             }
         }
+
+        System.out.println("Size of library: "+library.size());
         library.push(new Card(16, "joker"));
         library.push(new Card(16, "joker"));
         Collections.shuffle(library);
@@ -89,26 +91,23 @@ public class Application {
         System.out.println("dipai: ");
         for(int i = 0; i < dipai.size(); i++) {
         	dipai.get(i).printCard();
-        }
+        }*/
+
+        StartPanel sp = new StartPanel();
+        sp.addressField.setText("localhost");
+        String[] options = {"Host a server", "Connect to server"};
+
+        mode = JOptionPane.showOptionDialog(null, sp, "Please enter information and select mode",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+
+        playerName = (sp.nameField.getText() == null || sp.nameField.getText().equals("")) ?
+                "Player "+mode : sp.nameField.getText();
+
+        System.out.println(playerName);
+
+        MainBody mf = new MainBody();
+        mf.setVisible(true);
+        //System.exit(0);
     }
-    
-    public static String numToString(int number)
-    {
-        switch(number){
-            case 11:
-                return "J";
-            case 12:
-                return "Q";
-            case 13:
-                return "K";
-            case 14:
-                return "A";
-            case 15:
-                return "2";
-            case 16:
-                return "Joker";
-            default:
-            	return "Error";
-        }
-    }
+
 }
