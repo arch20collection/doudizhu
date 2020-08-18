@@ -57,10 +57,10 @@ public class Server extends Thread{
         readyPlayer = 0;
         currentPlayer = lord;
         fullDeck.shuffle();
-        splitDeck = fullDeck.deal();
+        splitDeck = fullDeck.dealFullDeck();
         fullDeck.printDeck();
         cardRemain = new int[3];
-        boardcast("resetGame", null);
+        broadcast("resetGame", null);
     }
     
     /**
