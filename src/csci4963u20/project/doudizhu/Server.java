@@ -188,7 +188,8 @@ public class Server extends Thread{
     		send(player, "cardsRemain", data);
     	}
     	else if (inputObj.msgType.equals("win")) {
-//    		sendOther(player, "gameOver", )
+    		int[] data = {player};
+    		broadcast("gameOver", data);
     		reset();
     	}
     	else if (inputObj.msgType.equals("ready")) {

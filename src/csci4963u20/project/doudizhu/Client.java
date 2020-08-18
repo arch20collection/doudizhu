@@ -81,6 +81,14 @@ public class Client extends Thread{
             	else if(m.msgType.equals("cardsRemain")) {
             		cardsRemain = (int[])m.content;
             	}
+            	else if(m.msgType.equals("gameOver")) {
+            		int winner = ((int[])m.content)[0];
+            		//Tell client who the winner is...
+            	}
+            	else if(m.msgType.equals("resetGame")) {
+            		currentDeck = new Deck();
+            		latestDeck = new Deck();
+            	}
             }
             
         } catch (Exception e) {
