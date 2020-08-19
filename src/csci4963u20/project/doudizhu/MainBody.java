@@ -12,7 +12,7 @@ public class MainBody extends JFrame {
     public MainBody(){
         setTitle("Doudizhu");
         osb = new OpponentStatusBar();
-        current_deck_panel = new CardPanel("Current deck", new Deck());
+        current_deck_panel = new CardPanel("Card Desk", new Deck());
 
         own_deck_panel = new CardPanel("Own deck", new Deck());
         ctb = new ControlToolBar();

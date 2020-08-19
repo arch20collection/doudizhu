@@ -20,8 +20,6 @@ public class Client extends Thread{
     
     /**
      * Default constructor from player with name
-     * @param f MainFrame of the client
-     * @param id id of the client
      */
     public Client(Player p) {
     	player = p;
