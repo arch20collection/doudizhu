@@ -1,10 +1,15 @@
 package csci4963u20.project.doudizhu;
 import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Properties;
 
 public class Application {
     public static Properties config;
     public static int mode = -1;
+    public static Client client;
+    public static Server server;
+
     public static String playerName;
     public static String serverHost = "localhost";
     public static int serverPort = 8848;
@@ -105,9 +110,57 @@ public class Application {
         playerName = (sp.nameField.getText() == null || sp.nameField.getText().equals("")) ?
                 "Player "+mode : sp.nameField.getText();
 
+        // server mode
+        if(mode == 0) {
+            serverHost = "localhost";
+            String portInput = sp.portField.getText();
+
+            // if port invalid
+            if(portInput == null || portInput.equals("") || serverPort < 0 || serverPort > 65535) {
+                JOptionPane.showMessageDialog(null,
+                        "Invalid port. Will use 8888 as default",
+                        "Warning", JOptionPane.WARNING_MESSAGE);
+                //serverPort = 8888;
+                //System.exit(1);
+            }else{
+                serverPort = Functions.convertToInteger(sp.portField.getText());
+            }
+            server = new Server(serverPort);
+            server.start();
+        }
+        // client mode
+        else if (mode == 1){
+            //TODO: Add support for two more clients connecting to the server
+            serverHost = sp.addressField.getText().length() == 0?"localhost":sp.addressField.getText();
+            String portInput = sp.portField.getText();
+            serverPort = Functions.convertToInteger(portInput);
+
+            if(serverHost == null || serverHost.equals("")) {
+                JOptionPane.showMessageDialog(null, "[ERROR] Hostname incorrect", "Error", JOptionPane.ERROR_MESSAGE);
+                System.exit(1);
+            }
+            // if port invalid
+            if(portInput == null || portInput.equals("") || serverPort < 0 || serverPort > 65535) {
+                JOptionPane.showMessageDialog(null,
+                        "Invalid port. Will use 8848 as default",
+                        "Warning", JOptionPane.WARNING_MESSAGE);
+                //serverPort = 8888;
+            }
+        }// exit if not 0 or 1
+        else if(mode == -1) {
+            JOptionPane.showMessageDialog(null, "No operation chose. Program will exit.",
+                    "Doudizhu", JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+        }
+
         System.out.println(playerName);
 
         MainBody mf = new MainBody();
+        mf.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent ev) {
+                System.exit(0);
+            }
+        });
         mf.setVisible(true);
         //System.exit(0);
     }
