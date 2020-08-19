@@ -32,6 +32,7 @@ public class CardPanel extends JPanel {
      */
     public void fillCardPanel(Deck d){
         removeAll();
+        deck_list = new ArrayList<>();
         deck = d;
         Iterator<Card> it = d.cardIterator();
         while(it.hasNext()){

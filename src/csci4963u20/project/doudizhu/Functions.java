@@ -14,31 +14,6 @@ public class Functions {
     }
 
     /**
-     * Convert some predefined color string to color objects.
-     * @param obj The given string of a color.
-     * @return  The color object of the given string represent.
-     */
-    public static Color strToColor(Object obj) {
-        String str = (String) obj;
-        switch (str) {
-            case "Color.WHITE":
-                return Color.WHITE;
-            case "Color.BLACK":
-                return Color.black;
-            case "Color.BLUE":
-                return Color.BLUE;
-            case "Color.RED":
-                return Color.RED;
-            case "Color.YELLOW":
-                return Color.YELLOW;
-            case "Color.GREEN":
-                return Color.GREEN;
-            default:
-                return Color.BLACK;
-        }
-    }
-
-    /**
      * Convert a string of integer to a int type.
      * @param str The str need rto be converted.
      * @return  The integer value the string represents.

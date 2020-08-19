@@ -124,16 +124,14 @@ public class Application {
 
             // if port invalid
             if(portInput == null || portInput.equals("") || input_server_port < 0 || input_server_port > 65535) {
-                JOptionPane.showMessageDialog(null,
-                        "Invalid port. Will use 8848 as default",
-                        "Warning", JOptionPane.WARNING_MESSAGE);
+                Functions.showInfoMsg("Invalid port. Will use "+serverPort+" as default");
                 //serverPort = 8888;
             }else{
                 serverPort = input_server_port;
             }
             server = new Server(8800);
             server.start();
-            server.run();
+            //server.run();
         }else if (mode == 1){
             System.out.println("Client");
             if(client1 == null){
@@ -157,8 +155,16 @@ public class Application {
 
         mf.ctb.send_button.addActionListener(ev -> {
             // send the player's card to current_cards
+            Deck d = new Deck();
+            d.add(new Card(8, "8"));
+            d.add(new Card(8, "8"));
+            mf.current_deck_panel.updateDeck(d);
         });
         mf.ctb.skip_button.addActionListener(ev -> {
+            // clear selection
+            for(CardView cv: mf.own_deck_panel.deck_list){
+                cv.setUnchosen();
+            }
             // skip the player
         });
 
