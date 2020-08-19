@@ -8,9 +8,8 @@ public class OpponentStatusBar extends JPanel {
     public OpponentStatusPanel osp2;
 
     public OpponentStatusBar(){
-        osp1 = new OpponentStatusPanel("lyc");
-        osp1.statusActivate();
-        osp2 = new OpponentStatusPanel("wyh");
+        osp1 = new OpponentStatusPanel();
+        osp2 = new OpponentStatusPanel();
         setLayout(new GridLayout(1, 2));
         add(osp1);
         add(osp2);
