@@ -194,8 +194,8 @@ public class Deck implements Serializable{
     	Deck[] splitDeck = new Deck[3];
     	splitDeck[lord] = new Deck(this.cards.subList(0, 20));
     	splitDeck[lord].sortDeck();
-    	splitDeck[lord].printDeck();
-    	System.out.println();
+    	//splitDeck[lord].printDeck();
+    	//System.out.println();
     	int p1, p2;
     	if(lord == 0) {
     		p1 = 1;
@@ -211,12 +211,12 @@ public class Deck implements Serializable{
     	}
     	splitDeck[p1] = new Deck(this.cards.subList(20, 37));
         splitDeck[p1].sortDeck();
-    	splitDeck[p1].printDeck();
-    	System.out.println();
+    	//splitDeck[p1].printDeck();
+    	//System.out.println();
     	splitDeck[p2] = new Deck(this.cards.subList(37, 54));
         splitDeck[p2].sortDeck();
-    	splitDeck[p2].printDeck();
-    	System.out.println();
+    	//splitDeck[p2].printDeck();
+    	//System.out.println();
     	return splitDeck;
     }
     

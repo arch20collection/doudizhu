@@ -1,10 +1,16 @@
 package csci4963u20.project.doudizhu;
 import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Properties;
 
 public class Application {
     public static Properties config;
     public static int mode = -1;
+    public static Client client1;
+    public static Client client2;
+    public static Server server;
+
     public static String playerName;
     public static String serverHost = "localhost";
     public static int serverPort = 8848;
@@ -103,12 +109,59 @@ public class Application {
                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
 
         playerName = (sp.nameField.getText() == null || sp.nameField.getText().equals("")) ?
-                "Player "+mode : sp.nameField.getText();
+                "Player "+ mode : sp.nameField.getText();
 
         System.out.println(playerName);
+        if(mode == -1) {
+            JOptionPane.showMessageDialog(null, "No operation chose. Program will exit.",
+                    "Battleship", JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+        }else if (mode == 0){
+            System.out.println("Server");
+            serverHost = "localhost";
+            String portInput = sp.portField.getText();
+            int input_server_port = Functions.convertToInteger(sp.portField.getText());
+
+            // if port invalid
+            if(portInput == null || portInput.equals("") || input_server_port < 0 || input_server_port > 65535) {
+                JOptionPane.showMessageDialog(null,
+                        "Invalid port. Will use 8848 as default",
+                        "Warning", JOptionPane.WARNING_MESSAGE);
+                //serverPort = 8888;
+            }else{
+                serverPort = input_server_port;
+            }
+            server = new Server(8800);
+            server.start();
+            server.run();
+        }else if (mode == 1){
+            System.out.println("Client");
+            if(client1 == null){
+                // connect as client_1
+            }else{
+                // connect as client_2
+            }
+        }
 
         MainBody mf = new MainBody();
+        mf.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent ev) {
+                System.exit(0);
+            }
+        });
         mf.setVisible(true);
+
+        mf.ctb.ready_button.addActionListener(ev -> {
+            // notify server that current user is ready
+        });
+
+        mf.ctb.send_button.addActionListener(ev -> {
+            // send the player's card to current_cards
+        });
+        mf.ctb.skip_button.addActionListener(ev -> {
+            // skip the player
+        });
+
         //System.exit(0);
     }
 

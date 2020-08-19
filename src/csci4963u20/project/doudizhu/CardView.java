@@ -5,10 +5,17 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * Visualization of one single card
+ */
 public class CardView extends JButton {
     public Card c;
     public boolean chosen;
 
+    /**
+     * Default constructor from a card
+     * @param new_card card to choose
+     */
     public CardView(Card new_card){
         c = new_card;
         chosen = false;
@@ -31,20 +38,33 @@ public class CardView extends JButton {
         });
     }
 
+    /**
+     * Set CardView as chosen
+     */
     public void setChosen(){
         chosen = true;
         updateAppearance();
     }
 
+    /**
+     * Set CardView as unchosen
+     */
     public void setUnchosen(){
         chosen = false;
         updateAppearance();
     }
 
+    /**
+     * Check if a card is chosen
+     * @return if a card is chosen
+     */
     public boolean isChosen(){
         return chosen == true;
     }
 
+    /**
+     * Update the appearance of a card if chosen/unchosen
+     */
     public void updateAppearance(){
         if(chosen){
             setBackground(Color.GRAY);

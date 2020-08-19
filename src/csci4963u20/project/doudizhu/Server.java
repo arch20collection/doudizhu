@@ -239,10 +239,4 @@ public class Server extends Thread{
     }
     
     
-    
-    public static void main(String[] arg) {
-    	Server s = new Server(8848);
-    }
-    
-    
 }

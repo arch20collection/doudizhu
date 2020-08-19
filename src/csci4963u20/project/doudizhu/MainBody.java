@@ -28,24 +28,21 @@ public class MainBody extends JFrame {
 
         Deck d = new Deck();
         d.add(new Card(13, "K"));
-        d.add(new Card(8, "8"));
-        d.add(new Card(8, "8"));
+        d.add(new Card(10, "10"));
+        d.add(new Card(10, "10"));
         d.add(new Card(3, "3"));
         d.add(new Card(4, "4"));
         d.add(new Card(5, "5"));
         d.sortDeck();
 
         Deck d2 = new Deck();
-        d2.add(new Card(5, "5"));
-        d2.add(new Card(12, "Q"));
         d2.add(new Card(8, "8"));
         d2.add(new Card(8, "8"));
-        d2.add(new Card(13, "K"));
         d2.sortDeck();
 
-        current_deck_panel.updateDeck(d);
+        current_deck_panel.updateDeck(d2);
+        current_deck_panel.disableButtons();
         own_deck_panel.updateDeck(d);
-        own_deck_panel.updateDeck(d2);
 
         setVisible(true);
 

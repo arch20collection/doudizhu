@@ -31,12 +31,12 @@ public class OpponentStatusPanel extends JPanel {
     public void updaterRemain(String a){
         cards_remaining.setText(a);
     }
-    public void status_active(){
+    public void statusActivate(){
         status_button.setBackground(Color.red);
         status_button.setOpaque(true);
     }
 
-    public void status_silent(){
+    public void statusDeactivate(){
         status_button.setBackground(Color.blue);
         status_button.setOpaque(true);
     }
