@@ -20,6 +20,7 @@ public class Client extends Thread{
     
     /**
      * Default constructor from player with name
+	 * @param p Player to be added
      */
     public Client(Player p) {
     	player = p;

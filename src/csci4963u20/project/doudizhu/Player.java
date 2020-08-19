@@ -27,7 +27,7 @@ public class Player {
     
     /**
      * Constructor that only have id
-     * @param n name of the player
+     * @param id id of the player
      */
     public Player(int id){
         this.id = id;
