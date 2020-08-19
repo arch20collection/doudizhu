@@ -46,4 +46,5 @@ public class InteractiveCardPanel extends CardPanel {
 		}
 		return combination;
 	}
+
 }

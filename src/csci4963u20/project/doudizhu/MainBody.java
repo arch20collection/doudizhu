@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.*;
 
 public class MainBody extends JFrame {
 	public OpponentStatusBar osb;
@@ -38,6 +40,13 @@ public class MainBody extends JFrame {
 				if(result != CombinationType.Invalid) {
 					current_deck_panel.updateDeck(own_deck_panel.getCombination());
 				}
+				ArrayList<CardView> current_deck=own_deck_panel.deck;
+				for(CardView x: current_deck){
+					if (x.isChosen()) current_deck.remove(x);
+				}
+				own_deck_panel.deck=current_deck;
+				own_deck_panel.upadatecardviewlist(current_deck);
+
 			}
 		});
 
