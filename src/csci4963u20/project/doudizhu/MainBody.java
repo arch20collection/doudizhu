@@ -46,6 +46,11 @@ public class MainBody extends JFrame {
 				current_deck.removeIf(CardView::isChosen);
 				own_deck_panel.deck=current_deck;
 				own_deck_panel.upadatecardviewlist(current_deck);
+				Deck update_deck=new Deck();
+				for(CardView a:own_deck_panel.deck){
+					update_deck.add(a.c);
+				}
+				own_deck_panel.updateDeck(update_deck);
 
 			}
 		});
