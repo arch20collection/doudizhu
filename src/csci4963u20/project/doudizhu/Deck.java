@@ -72,7 +72,7 @@ public class Deck implements Serializable {
 	 * Sort the deck.
 	 */
 	public void sortDeck() {
-		Collections.sort(cards);
+		Collections.sort(cards, Collections.reverseOrder());
 	}
 
 	public boolean isSingle() {

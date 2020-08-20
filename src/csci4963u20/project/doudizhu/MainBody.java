@@ -43,10 +43,12 @@ public class MainBody extends JFrame {
 				}
 
 				ArrayList<CardView> current_deck=own_deck_panel.deck;
-				current_deck.removeIf(CardView::isChosen);
-				own_deck_panel.deck=current_deck;
+				if(result != CombinationType.Invalid) {
+					current_deck.removeIf(CardView::isChosen);
+				}
+				own_deck_panel.deck = current_deck;
 				own_deck_panel.upadatecardviewlist(current_deck);
-				Deck update_deck=new Deck();
+				Deck update_deck = new Deck();
 				for(CardView a:own_deck_panel.deck){
 					update_deck.add(a.c);
 				}
@@ -56,12 +58,8 @@ public class MainBody extends JFrame {
 		});
 
 		Deck d = new Deck();
-		d.add(new Card(13, "K"));
 		d.add(new Card(8, "8"));
 		d.add(new Card(8, "8"));
-		d.add(new Card(3, "3"));
-		d.add(new Card(4, "4"));
-		d.add(new Card(5, "5"));
 		d.sortDeck();
 
 		Deck d2 = new Deck();
