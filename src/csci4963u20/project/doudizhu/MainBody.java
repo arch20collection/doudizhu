@@ -35,15 +35,15 @@ public class MainBody extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+
 				CombinationType result = own_deck_panel.checkCombination();
 				System.out.println("Combination Type: " + result);
 				if(result != CombinationType.Invalid) {
 					current_deck_panel.updateDeck(own_deck_panel.getCombination());
 				}
+
 				ArrayList<CardView> current_deck=own_deck_panel.deck;
-				for(CardView x: current_deck){
-					if (x.isChosen()) current_deck.remove(x);
-				}
+				current_deck.removeIf(CardView::isChosen);
 				own_deck_panel.deck=current_deck;
 				own_deck_panel.upadatecardviewlist(current_deck);
 
