@@ -199,6 +199,7 @@ public class Server extends Thread{
     		
     		playerSock1 = serverSocket.accept();
     		System.out.println("[Server] Client1 connected");
+
     		playerSock2 = serverSocket.accept();
     		System.out.println("[Server] Client2 connected");
     		playerSock3 = serverSocket.accept();
@@ -209,10 +210,12 @@ public class Server extends Thread{
             
             out2 = new ObjectOutputStream(playerSock2.getOutputStream());
             in2 = new ObjectInputStream(playerSock2.getInputStream());
-            
+            /*
             out3 = new ObjectOutputStream(playerSock3.getOutputStream());
             in3 = new ObjectInputStream(playerSock3.getInputStream());
-            
+
+             */
+
             int fId[] = new int[1];
             fId[0] = 0;
             send(0, "assignID", fId);
@@ -220,18 +223,19 @@ public class Server extends Thread{
             int sId[] = new int[1];
             sId[0] = 1;
             send(1, "assignID", sId);
-            
+            /*
             int tId[] = new int[1];
             tId[0] = 2;
             send(2, "assignID", tId);
-            
+
+             */
             InputThread client1InputThread = new InputThread(this,in1);
             InputThread client2InputThread = new InputThread(this,in2);
-            InputThread client3InputThread = new InputThread(this,in3);
+            //InputThread client3InputThread = new InputThread(this,in3);
 
             client1InputThread.start();
             client2InputThread.start();
-            client3InputThread.start();
+            //client3InputThread.start();
             
     	}catch(IOException e) {
             e.printStackTrace();

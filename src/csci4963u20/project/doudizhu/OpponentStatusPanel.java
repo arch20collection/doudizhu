@@ -28,6 +28,9 @@ public class OpponentStatusPanel extends JPanel {
 
         add(cards_remaining);
     }
+    public void update_name(String Name){
+        setBorder(BorderFactory.createTitledBorder(String.format("Player %s", Name)));
+    }
     public void updaterRemain(String a){
         cards_remaining.setText(a);
     }
