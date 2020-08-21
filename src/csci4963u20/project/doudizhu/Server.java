@@ -184,6 +184,7 @@ public class Server extends Thread{
     		int[] data = {player};
     		broadcast("gameOver", data);
     		reset();
+    		lord = player;
     	}
     	else if (inputObj.msgType.equals("ready")) {
     		readyPlayer++;

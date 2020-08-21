@@ -16,7 +16,7 @@ public class Client extends Thread{
     public Deck currentDeck;
     public Deck latestDeck;
     public int[] cardsRemain;
-    private String[] playerNames;
+    public String[] playerNames;
     
     /**
      * Default constructor from player with name
@@ -34,8 +34,15 @@ public class Client extends Thread{
      */
     public void send(String Type, Object Content) {
         try{
+        	if(Type.equals("sendDeck")) {
+        		Deck sent = (Deck)Content;
+        		this.latestDeck = sent;
+        		Iterator<Card> itr = sent.getIterator();
+        		while(itr.hasNext()) {
+        			currentDeck.add(itr.next());
+        		}
+        	}
             Message m = new Message(this.player.id,-1,Type,Content);
-
             out.writeObject(m);
         } catch (Exception e) {
             e.printStackTrace();
