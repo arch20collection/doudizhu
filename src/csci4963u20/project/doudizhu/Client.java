@@ -69,7 +69,7 @@ public class Client extends Thread{
 
             System.out.println(Application.playerName);
 
-			frame.own_deck_panel.setBorder(BorderFactory.createTitledBorder("aoligei"));
+			//frame.own_deck_panel.setBorder(BorderFactory.createTitledBorder("aoligei"));
 
             while(true) {
             	Message m = ((Message)in.readObject());

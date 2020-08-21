@@ -4,6 +4,7 @@ import javax.swing.*;
 
 public class ControlToolBar extends JToolBar {
 
+    public JLabel name_label = new JLabel("Waiting for user...");
     public JButton send_button = new JButton("Send");
     public JButton skip_button = new JButton("Skip");
     public JButton ready_button = new JButton("Ready");
@@ -13,6 +14,7 @@ public class ControlToolBar extends JToolBar {
      */
     public ControlToolBar(){
         setFloatable(false);
+        add(name_label);
         add(Box.createHorizontalGlue());
         add(ready_button);
         add(send_button);

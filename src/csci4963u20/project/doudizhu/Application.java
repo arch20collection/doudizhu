@@ -46,61 +46,6 @@ public class Application {
     public static void main(String[] args){
 
         System.out.println("Welcome to Doudizhu!");
-        
-         // deal card
-        /*Stack<Card> library = new Stack<>();
-
-        for(int i = 0; i < 4; i++) {
-            for(int j = 3; j < 16; j++) {
-                if(j <= 10)
-                    library.push(new Card(j, Integer.toString(j)));
-                else
-                    library.push(new Card(j, numToString(j)));
-            }
-        }
-
-        System.out.println("Size of library: "+library.size());
-        library.push(new Card(16, "joker"));
-        library.push(new Card(16, "joker"));
-        Collections.shuffle(library);
-
-        ArrayList<Card> player1 = new ArrayList<>();
-        ArrayList<Card> player2 = new ArrayList<>();
-        ArrayList<Card> player3 = new ArrayList<>();
-        ArrayList<Card> dipai = new ArrayList<>();
-
-        while(library.size() > 3)
-        {
-            player1.add(library.pop());
-            player2.add(library.pop());
-            player3.add(library.pop());
-        }
-        for(int i = 0; i < 3; i++)
-        {
-            dipai.add(library.pop());
-        }
-        
-        for(int j = 1; j <= 3; j++) {
-        	Collections.sort(player1);
-        	Collections.sort(player2);
-        	Collections.sort(player3);
-        	System.out.println("player" + j + ": ");
-        	for(int i = 0; i < player1.size(); i++)
-            {
-        		if(j == 1) {
-        			player1.get(i).printCard();
-        		} else if(j == 2) {
-        			player2.get(i).printCard();
-        		} else {
-        			player3.get(i).printCard();	
-        		}
-            }
-        }
-        
-        System.out.println("dipai: ");
-        for(int i = 0; i < dipai.size(); i++) {
-        	dipai.get(i).printCard();
-        }*/
 
         StartPanel sp = new StartPanel();
         sp.addressField.setText("localhost");
@@ -116,6 +61,7 @@ public class Application {
             mf.ctb.send_button.setEnabled(true);
             mf.ctb.skip_button.setEnabled(true);
             mf.ctb.ready_button.setEnabled(false);
+            mf.ctb.name_label.setText("Welcome"+Application.server.group[0].name);
         });
         // server mode
         if(mode == 0) {
@@ -162,7 +108,6 @@ public class Application {
                     "Doudizhu", JOptionPane.INFORMATION_MESSAGE);
             System.exit(0);
         }
-
         System.out.println(playerName);
 
         mf.addWindowListener(new WindowAdapter() {

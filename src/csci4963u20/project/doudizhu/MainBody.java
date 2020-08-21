@@ -15,7 +15,7 @@ public class MainBody extends JFrame {
 	public ControlMenuBar cmb;
 
 	public MainBody() {
-		setTitle("Doudizhu");
+		setTitle("Dou Di Zhu");
 		osb = new OpponentStatusBar();
 		current_deck_panel = new DisplayCardPanel("Current deck", new Deck());
 
@@ -47,12 +47,6 @@ public class MainBody extends JFrame {
 			CombinationType result = own_deck_panel.checkCombination();
 			System.out.println("Combination Type: " + result);
 			Deck combi = own_deck_panel.getCombination();
-			/*if(result != CombinationType.Invalid) {
-				// check if result is same to lastdeck
-				if(result == lastDeck.checkValid()){
-					current_deck_panel.updateDeck(combi);
-				}
-			}*/
 
 			// removing cards in own_deck if valid
 			ArrayList<CardView> current_deck=own_deck_panel.deck;
@@ -81,34 +75,34 @@ public class MainBody extends JFrame {
 		});
 
 		// ********** TESTING ONLY. REMOVE THIS PART WHEN FINISHED. *************
-		Deck d = new Deck();
-		d.add(new Card(8, "8"));
-		d.add(new Card(8, "8"));
-		d.sortDeck();
 
 		Deck d2 = new Deck();
-		d2.add(new Card(3, "3"));
-		d2.add(new Card(3, "3"));
-		d2.add(new Card(3, "3"));
 		d2.add(new Card(3, "3"));
 		d2.add(new Card(4, "4"));
 		d2.add(new Card(11, "J"));
 		d2.add(new Card(4, "4"));
-		d2.add(new Card(4, "4"));
-		d2.add(new Card(4, "4"));
+		d2.add(new Card(6, "6"));
+		d2.add(new Card(6, "6"));
 		d2.add(new Card(5, "5"));
 		d2.add(new Card(12, "Q"));
 		d2.add(new Card(8, "8"));
 		d2.add(new Card(8, "8"));
 		d2.add(new Card(13, "K"));
+		d2.add(new Card(13, "K"));
+		d2.add(new Card(14, "A"));
+		d2.add(new Card(14, "A"));
+		d2.add(new Card(15, "2"));
+		d2.add(new Card(15, "2"));
 		d2.sortDeck();
 
-		current_deck_panel.updateDeck(d);
+		current_deck_panel.updateDeck(new Deck());
 		own_deck_panel.updateDeck(d2);
 
 		// ***********************************************************************
 
 		//System.out.println(Application.server==null);
+		//try{Thread.sleep(2000);}catch(Exception e){e.printStackTrace();}
+		System.out.println(Application.client == null);
 
 		Player player_client=new Player(Application.playerName);
 		Application.client = new Client(player_client, this);

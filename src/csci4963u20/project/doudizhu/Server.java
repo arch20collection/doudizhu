@@ -140,6 +140,7 @@ public class Server extends Thread{
      */
     public void processMessage(Message inputObj) {
     	int player = inputObj.from;
+    	System.out.println(inputObj.msgType);
     	
     	if(inputObj.msgType.equals("getDeck")) {
     		if(player == lord) {
