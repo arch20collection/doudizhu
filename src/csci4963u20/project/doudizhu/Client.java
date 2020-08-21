@@ -61,6 +61,7 @@ public class Client extends Thread{
 
         	server = new Socket(Application.serverHost, Application.serverPort);
         	out = new ObjectOutputStream(server.getOutputStream());
+        	System.out.println("out shall not be null");
             in  = new ObjectInputStream(server.getInputStream());
             
             while(true) {

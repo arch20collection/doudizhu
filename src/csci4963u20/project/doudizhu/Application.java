@@ -156,9 +156,7 @@ public class Application {
             }else{
                 serverPort = Functions.convertToInteger(sp.portField.getText());
             }
-            Player client=new Player(playerName);
-            Client hi=new Client(client, mf);
-            hi.start();
+
         }// exit if not 0 or 1
 
         else if(mode == -1) {

@@ -35,8 +35,9 @@ public class MainBody extends JFrame {
 
 			CombinationType result = own_deck_panel.checkCombination();
 			System.out.println("Combination Type: " + result);
+			Deck combi = own_deck_panel.getCombination();
 			if(result != CombinationType.Invalid) {
-				current_deck_panel.updateDeck(own_deck_panel.getCombination());
+				current_deck_panel.updateDeck(combi);
 			}
 
 			// removing cards in own_deck if valid
@@ -58,6 +59,9 @@ public class MainBody extends JFrame {
 			if(own_deck_panel.card_count == 0){
 				Functions.showInfoMsg("You win!");
 				//TODO: notify the server to broadcast that this user won
+			}else{
+				System.out.println(Application.client == null);
+				Application.client.send("sendDeck", combi);
 			}
 
 		});
@@ -88,6 +92,9 @@ public class MainBody extends JFrame {
 		current_deck_panel.updateDeck(d);
 		// own_deck_panel.updateDeck(d);
 		own_deck_panel.updateDeck(d2);
+		Player player_client=new Player(Application.playerName);
+		Application.client = new Client(player_client, this);
+		Application.client.start();
 
 		// ***********************************************************************
 
