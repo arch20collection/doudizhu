@@ -1,4 +1,6 @@
 # Doudizhu
+## Members
+Hairong Chen, Qiran Sun, Yichen Li, Zhaolong Lin
 ## Overview
 This project is an implementation of a popular Chinese card game: Doudizhu. The game features easy-to-learn rules that are hard to master, requiring mathematical and strategic thinking as well as carefully planned execution.  
 The game is played among three people with one pack of cards (54 count), including the two differentiated jokers. It starts with each player bidding for the "landlord" position. Those who lose the bid or do not bid enter the game as the "peasants" team competing against the landlord. For each player, the objective of the game is to be the first one to have no cards left.  
@@ -18,3 +20,5 @@ The game starts with the landlord. In each round, each player must be able to sh
 * Player: ADT of a player 玩家ADT
 * Server: class of server 服务器
 * StartPanel: JPanel for starting/connecting a server 开始页面选择client或server模式
+## How-to
+The program will run automatically after compilation. User will be prompted to click "ready" to notify the server. Game starts in turn when all users are ready, allowing each player to choose cards and send. As one user sends out all his/her cards, game terminates by announcing the winning player.

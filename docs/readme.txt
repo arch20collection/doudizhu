@@ -1,4 +1,6 @@
 # Doudizhu
+## Members
+Hairong Chen, Qiran Sun, Yichen Li, Zhaolong Lin
 ## Overview
 This project is an implementation of a popular Chinese card game: Doudizhu.
 The game features easy-to-learn rules that are hard to master, requiring mathematical
