@@ -112,12 +112,10 @@ public class Application {
         playerName = (sp.nameField.getText() == null || sp.nameField.getText().equals("")) ?
                 "Player "+mode : sp.nameField.getText();
         MainBody mf = new MainBody();
-        mf.ctb.ready_button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mf.ctb.send_button.setEnabled(true);
-                mf.ctb.skip_button.setEnabled(true);
-            }
+        mf.ctb.ready_button.addActionListener(e -> {
+            mf.ctb.send_button.setEnabled(true);
+            mf.ctb.skip_button.setEnabled(true);
+            mf.ctb.ready_button.setEnabled(false);
         });
         // server mode
         if(mode == 0) {

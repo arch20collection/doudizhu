@@ -104,13 +104,15 @@ public class MainBody extends JFrame {
 		d2.sortDeck();
 
 		current_deck_panel.updateDeck(d);
-		// own_deck_panel.updateDeck(d);
 		own_deck_panel.updateDeck(d2);
+
+		// ***********************************************************************
+
+		//System.out.println(Application.server==null);
+
 		Player player_client=new Player(Application.playerName);
 		Application.client = new Client(player_client, this);
 		Application.client.start();
-
-		// ***********************************************************************
 
 		setVisible(true);
 

@@ -20,7 +20,7 @@ public class Server extends Thread{
     public int port;
     public int[] cardRemain;
     private Deck fullDeck;
-    private Deck[] splitDeck;
+    public Deck[] splitDeck;
     private int lord;
     Player player1;
     Player player2;
