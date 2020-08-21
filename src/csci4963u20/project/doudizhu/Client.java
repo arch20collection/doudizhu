@@ -54,6 +54,7 @@ public class Client extends Thread{
      */
     public void run(){
         try {
+
         	server = new Socket(Application.serverHost, Application.serverPort);
         	out = new ObjectOutputStream(server.getOutputStream());
             in  = new ObjectInputStream(server.getInputStream());

@@ -28,6 +28,7 @@ public abstract class CardPanel extends JPanel {
         deck = new ArrayList<>();
         fillCardPanel(new_d);
     }
+
     public void upadatecardviewlist(ArrayList<CardView> a){
         deck=a;
     }

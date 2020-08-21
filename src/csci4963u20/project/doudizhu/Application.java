@@ -146,7 +146,11 @@ public class Application {
                         "Warning", JOptionPane.WARNING_MESSAGE);
                 //serverPort = 8888;
             }
+            Player client=new Player(playerName);
+            Client hi=new Client(client);
+            hi.start();
         }// exit if not 0 or 1
+
         else if(mode == -1) {
             JOptionPane.showMessageDialog(null, "No operation chose. Program will exit.",
                     "Doudizhu", JOptionPane.INFORMATION_MESSAGE);

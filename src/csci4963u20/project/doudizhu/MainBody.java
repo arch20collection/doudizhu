@@ -31,32 +31,41 @@ public class MainBody extends JFrame {
 		add(ctb);
 		setJMenuBar(cmb);
 
-		ctb.send_button.addActionListener(new ActionListener() {
+		ctb.send_button.addActionListener(arg0 -> {
 
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				CombinationType result = own_deck_panel.checkCombination();
-				System.out.println("Combination Type: " + result);
-				if(result != CombinationType.Invalid) {
-					current_deck_panel.updateDeck(own_deck_panel.getCombination());
-				}
-				ArrayList<CardView> current_deck=own_deck_panel.deck;
-				for(CardView x: current_deck){
-					if (x.isChosen()) current_deck.remove(x);
-				}
-				own_deck_panel.deck=current_deck;
-				own_deck_panel.upadatecardviewlist(current_deck);
-
+			CombinationType result = own_deck_panel.checkCombination();
+			System.out.println("Combination Type: " + result);
+			if(result != CombinationType.Invalid) {
+				current_deck_panel.updateDeck(own_deck_panel.getCombination());
 			}
+
+			// removing cards in own_deck if valid
+			ArrayList<CardView> current_deck=own_deck_panel.deck;
+			if(result != CombinationType.Invalid) {
+				current_deck.removeIf(CardView::isChosen);
+			}
+			own_deck_panel.deck = current_deck;
+
+			own_deck_panel.upadatecardviewlist(current_deck);
+			Deck update_deck = new Deck();
+			for(CardView a:own_deck_panel.deck){
+				update_deck.add(a.c);
+			}
+			own_deck_panel.updateDeck(update_deck);
+			System.out.println(own_deck_panel.card_count);
+
+			// check the card count after updating the decks
+			if(own_deck_panel.card_count == 0){
+				Functions.showInfoMsg("You win!");
+				//TODO: notify the server to broadcast that this user won
+			}
+
 		});
 
+		// ********** TESTING ONLY. REMOVE THIS PART WHEN FINISHED. *************
 		Deck d = new Deck();
-		d.add(new Card(13, "K"));
 		d.add(new Card(8, "8"));
 		d.add(new Card(8, "8"));
-		d.add(new Card(3, "3"));
-		d.add(new Card(4, "4"));
-		d.add(new Card(5, "5"));
 		d.sortDeck();
 
 		Deck d2 = new Deck();
@@ -79,6 +88,8 @@ public class MainBody extends JFrame {
 		current_deck_panel.updateDeck(d);
 		// own_deck_panel.updateDeck(d);
 		own_deck_panel.updateDeck(d2);
+
+		// ***********************************************************************
 
 		setVisible(true);
 
