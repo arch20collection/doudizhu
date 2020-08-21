@@ -16,7 +16,8 @@ public class ControlToolBar extends JToolBar {
         add(Box.createHorizontalGlue());
         add(ready_button);
         add(send_button);
+        send_button.setEnabled(false);
         add(skip_button);
-
+        skip_button.setEnabled(false);
     }
 }

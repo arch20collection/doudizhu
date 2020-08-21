@@ -109,7 +109,7 @@ public class Application {
 
         playerName = (sp.nameField.getText() == null || sp.nameField.getText().equals("")) ?
                 "Player "+mode : sp.nameField.getText();
-
+        MainBody mf = new MainBody();
         // server mode
         if(mode == 0) {
             serverHost = "localhost";
@@ -147,7 +147,7 @@ public class Application {
                 //serverPort = 8888;
             }
             Player client=new Player(playerName);
-            Client hi=new Client(client);
+            Client hi=new Client(client, mf);
             hi.start();
         }// exit if not 0 or 1
 
@@ -159,7 +159,6 @@ public class Application {
 
         System.out.println(playerName);
 
-        MainBody mf = new MainBody();
         mf.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent ev) {
                 System.exit(0);

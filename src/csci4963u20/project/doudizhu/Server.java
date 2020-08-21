@@ -166,6 +166,8 @@ public class Server extends Thread{
     		send(player, "names", names);
     	}
     	else if (inputObj.msgType.equals("sendDeck")) {
+    		Deck receivedDeck = (Deck)inputObj.content;
+    		receivedDeck.printDeck();
     		sendOther(player, "receiveDeck", inputObj.content);
     		cardRemain[player] -= ((Deck)inputObj.content).size();
     		if(currentPlayer == 2) {
@@ -187,9 +189,11 @@ public class Server extends Thread{
     		lord = player;
     	}
     	else if (inputObj.msgType.equals("ready")) {
+    		System.out.println("[Server] a player is ready");
     		readyPlayer++;
     		if(readyPlayer == 3) {
     			broadcast("gameStart", null);
+    			System.out.println("[Server] game start");
     		}
     	}
     }
@@ -211,11 +215,11 @@ public class Server extends Thread{
             
             out2 = new ObjectOutputStream(playerSock2.getOutputStream());
             in2 = new ObjectInputStream(playerSock2.getInputStream());
-            /*
+            
             out3 = new ObjectOutputStream(playerSock3.getOutputStream());
             in3 = new ObjectInputStream(playerSock3.getInputStream());
 
-             */
+             
 
             int fId[] = new int[1];
             fId[0] = 0;
@@ -224,19 +228,19 @@ public class Server extends Thread{
             int sId[] = new int[1];
             sId[0] = 1;
             send(1, "assignID", sId);
-            /*
+            
             int tId[] = new int[1];
             tId[0] = 2;
             send(2, "assignID", tId);
 
-             */
+             
             InputThread client1InputThread = new InputThread(this,in1);
             InputThread client2InputThread = new InputThread(this,in2);
-            //InputThread client3InputThread = new InputThread(this,in3);
+            InputThread client3InputThread = new InputThread(this,in3);
 
             client1InputThread.start();
             client2InputThread.start();
-            //client3InputThread.start();
+            client3InputThread.start();
             
     	}catch(IOException e) {
             e.printStackTrace();

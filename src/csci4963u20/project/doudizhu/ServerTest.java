@@ -34,5 +34,8 @@ public class ServerTest {
     		System.out.println("Name: " + p.name + " " + "Id: " + p.id + " Deck: ");
     		p.deck.printDeck();
     	}
+    	Deck temp = new Deck();
+    	temp.add(new Card(3, "3"));
+    	p1.send("sendDeck", temp);
     }
 }

@@ -11,6 +11,7 @@ public class Client extends Thread{
     private ObjectInputStream in = null;
     // output stream
     private ObjectOutputStream out = null;
+    MainBody frame;
     public Socket server;
     public Player player;
     public Deck currentDeck;
@@ -22,9 +23,10 @@ public class Client extends Thread{
      * Default constructor from player with name
 	 * @param p Player to be added
      */
-    public Client(Player p) {
+    public Client(Player p, MainBody mainFrame) {
     	player = p;
     	currentDeck = new Deck();
+    	frame = mainFrame;
     }
     
     /**
@@ -41,6 +43,8 @@ public class Client extends Thread{
         		while(itr.hasNext()) {
         			currentDeck.add(itr.next());
         		}
+        		frame.ctb.send_button.setEnabled(false);
+        		frame.ctb.skip_button.setEnabled(false);
         	}
             Message m = new Message(this.player.id,-1,Type,Content);
             out.writeObject(m);
@@ -67,21 +71,33 @@ public class Client extends Thread{
             		send("playerName", this.player.name);
             	}
             	else if(m.msgType.equals("deals")) {
-            		this.player.deck = ((Deck)m.content);
+            		Deck received = (Deck)m.content;
+            		this.player.deck = received;
+            		if(received.size() == 20) {
+            			frame.ctb.send_button.setEnabled(true);
+                		frame.ctb.skip_button.setEnabled(true);
+            		}
             	}
             	else if(m.msgType.equals("yourTerm")) {
-            		//Ready to play
+            		frame.ctb.send_button.setEnabled(true);
+            		frame.ctb.skip_button.setEnabled(true);
             	}
             	else if(m.msgType.equals("gameStart")) {
             		send("getDeck", null);
             	}
             	else if(m.msgType.equals("receiveDeck")) {
             		Deck received = (Deck)m.content;
-            		latestDeck = received;
-            		Iterator<Card> itr = received.getIterator();
-            		while(itr.hasNext()) {
-            			currentDeck.add(itr.next());
+            		System.out.println("Deck received!");
+            		received.printDeck();
+	            	if(received.size() != 0) {
+	            		latestDeck = received;
+	            		Iterator<Card> itr = received.getIterator();
+	            		while(itr.hasNext()) {
+	            			currentDeck.add(itr.next());
+	            		}
+	            		frame.current_deck_panel.updateDeck(received);
             		}
+	            	send("getCardsRemain", null);
             	}
             	else if(m.msgType.equals("names")) {
             		playerNames = (String[]) m.content;
