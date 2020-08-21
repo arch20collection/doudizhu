@@ -133,7 +133,6 @@ public class Application {
             //TODO: Add support for two more clients connecting to the server
             serverHost = sp.addressField.getText().length() == 0?"localhost":sp.addressField.getText();
             String portInput = sp.portField.getText();
-            serverPort = Functions.convertToInteger(portInput);
 
             if(serverHost == null || serverHost.equals("")) {
                 JOptionPane.showMessageDialog(null, "[ERROR] Hostname incorrect", "Error", JOptionPane.ERROR_MESSAGE);
@@ -145,6 +144,8 @@ public class Application {
                         "Invalid port. Will use 8848 as default",
                         "Warning", JOptionPane.WARNING_MESSAGE);
                 //serverPort = 8888;
+            }else{
+                serverPort = Functions.convertToInteger(sp.portField.getText());
             }
             Player client=new Player(playerName);
             Client hi=new Client(client, mf);

@@ -6,7 +6,7 @@ public class ServerTest {
     	Player a = new Player("Alice");
     	Player b = new Player("Bob");
     	Player c = new Player("Charlie");
-    	Client p1 = new Client(a);
+    	/*Client p1 = new Client(a);
     	Client p2 = new Client(b);
     	Client p3 = new Client(c);
     	s.start();
@@ -36,6 +36,6 @@ public class ServerTest {
     	}
     	Deck temp = new Deck();
     	temp.add(new Card(3, "3"));
-    	p1.send("sendDeck", temp);
+    	p1.send("sendDeck", temp);*/
     }
 }
