@@ -1,5 +1,7 @@
 package csci4963u20.project.doudizhu;
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Properties;
@@ -110,6 +112,13 @@ public class Application {
         playerName = (sp.nameField.getText() == null || sp.nameField.getText().equals("")) ?
                 "Player "+mode : sp.nameField.getText();
         MainBody mf = new MainBody();
+        mf.ctb.ready_button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mf.ctb.send_button.setEnabled(true);
+                mf.ctb.skip_button.setEnabled(true);
+            }
+        });
         // server mode
         if(mode == 0) {
             serverHost = "localhost";
