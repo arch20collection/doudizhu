@@ -178,6 +178,15 @@ public class Server extends Thread{
     		}
     		send(currentPlayer, "yourTerm", null);
     	}
+        else if (inputObj.msgType.equals("skip")) {
+            if(currentPlayer == 2) {
+                currentPlayer = 0;
+            }
+            else {
+                currentPlayer++;
+            }
+            send(currentPlayer, "yourTerm", null);
+        }
     	else if (inputObj.msgType.equals("getCardsRemain")) {
     		int[] data = cardRemain.clone();
     		send(player, "cardsRemain", data);

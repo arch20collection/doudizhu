@@ -31,14 +31,28 @@ public class MainBody extends JFrame {
 		add(ctb);
 		setJMenuBar(cmb);
 
+		ctb.skip_button.addActionListener(ev -> {
+			Application.client.send("skip", null);
+		});
+
 		ctb.send_button.addActionListener(arg0 -> {
+			Deck lastDeck = new Deck();
+			if(Application.client.latestDeck != null){
+				lastDeck = Application.client.latestDeck;
+				System.out.println("=======last deck is========");
+				lastDeck.printDeck();
+				System.out.println("===========================");
+			}
 
 			CombinationType result = own_deck_panel.checkCombination();
 			System.out.println("Combination Type: " + result);
 			Deck combi = own_deck_panel.getCombination();
-			if(result != CombinationType.Invalid) {
-				current_deck_panel.updateDeck(combi);
-			}
+			/*if(result != CombinationType.Invalid) {
+				// check if result is same to lastdeck
+				if(result == lastDeck.checkValid()){
+					current_deck_panel.updateDeck(combi);
+				}
+			}*/
 
 			// removing cards in own_deck if valid
 			ArrayList<CardView> current_deck=own_deck_panel.deck;
@@ -58,9 +72,9 @@ public class MainBody extends JFrame {
 			// check the card count after updating the decks
 			if(own_deck_panel.card_count == 0){
 				Functions.showInfoMsg("You win!");
-				//TODO: notify the server to broadcast that this user won
 			}else{
 				System.out.println(Application.client == null);
+				current_deck_panel.updateDeck(combi);
 				Application.client.send("sendDeck", combi);
 			}
 

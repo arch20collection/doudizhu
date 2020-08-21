@@ -45,7 +45,10 @@ public class Client extends Thread{
         		}
         		frame.ctb.send_button.setEnabled(false);
         		frame.ctb.skip_button.setEnabled(false);
-        	}
+        	}else if (Type.equals("skip")){
+				frame.ctb.send_button.setEnabled(false);
+				frame.ctb.skip_button.setEnabled(false);
+			}
             Message m = new Message(this.player.id,-1,Type,Content);
             out.writeObject(m);
         } catch (Exception e) {
