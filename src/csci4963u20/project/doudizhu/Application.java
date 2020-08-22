@@ -57,11 +57,12 @@ public class Application {
         playerName = (sp.nameField.getText() == null || sp.nameField.getText().equals("")) ?
                 "Player "+mode : sp.nameField.getText();
         MainBody mf = new MainBody();
-        mf.ctb.ready_button.addActionListener(e -> {
+        mf.ctb.ready_button.addActionListener(ev -> {
             mf.ctb.send_button.setEnabled(true);
             mf.ctb.skip_button.setEnabled(true);
             mf.ctb.ready_button.setEnabled(false);
-            mf.ctb.name_label.setText("Welcome"+Application.server.group[0].name);
+            //mf.ctb.name_label.setText("Welcome"+Application.server.group[0].name);
+            Application.client.send("ready", null);
         });
         // server mode
         if(mode == 0) {

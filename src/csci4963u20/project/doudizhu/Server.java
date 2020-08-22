@@ -256,13 +256,4 @@ public class Server extends Thread{
             e.printStackTrace();
         }
     }
-    
-    
-    
-    public static void main(String[] arg) {
-    	Server s = new Server(8848);
-
-    }
-    
-    
 }

@@ -66,6 +66,7 @@ public class MainBody extends JFrame {
 			// check the card count after updating the decks
 			if(own_deck_panel.card_count == 0){
 				Functions.showInfoMsg("You win!");
+				Application.client.send("win", null);
 			}else{
 				System.out.println(Application.client == null);
 				current_deck_panel.updateDeck(combi);
@@ -76,27 +77,8 @@ public class MainBody extends JFrame {
 
 		// ********** TESTING ONLY. REMOVE THIS PART WHEN FINISHED. *************
 
-		Deck d2 = new Deck();
-		d2.add(new Card(3, "3"));
-		d2.add(new Card(4, "4"));
-		d2.add(new Card(11, "J"));
-		d2.add(new Card(4, "4"));
-		d2.add(new Card(6, "6"));
-		d2.add(new Card(6, "6"));
-		d2.add(new Card(5, "5"));
-		d2.add(new Card(12, "Q"));
-		d2.add(new Card(8, "8"));
-		d2.add(new Card(8, "8"));
-		d2.add(new Card(13, "K"));
-		d2.add(new Card(13, "K"));
-		d2.add(new Card(14, "A"));
-		d2.add(new Card(14, "A"));
-		d2.add(new Card(15, "2"));
-		d2.add(new Card(15, "2"));
-		d2.sortDeck();
-
-		current_deck_panel.updateDeck(new Deck());
-		own_deck_panel.updateDeck(d2);
+		//current_deck_panel.updateDeck(new Deck());
+		//own_deck_panel.updateDeck(d2);
 
 		// ***********************************************************************
 

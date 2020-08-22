@@ -85,6 +85,8 @@ public class Client extends Thread{
             			frame.ctb.send_button.setEnabled(true);
                 		frame.ctb.skip_button.setEnabled(true);
             		}
+            		received.printDeck();
+            		frame.own_deck_panel.updateDeck(received);
             	}
             	else if(m.msgType.equals("yourTerm")) {
             		frame.ctb.send_button.setEnabled(true);
@@ -115,7 +117,7 @@ public class Client extends Thread{
             	}
             	else if(m.msgType.equals("gameOver")) {
             		int winner = ((int[])m.content)[0];
-            		//Tell client who the winner is...
+            		Functions.showInfoMsg("Game Over. Winner is "+winner);
             	}
             	else if(m.msgType.equals("resetGame")) {
             		currentDeck = new Deck();
